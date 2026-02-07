@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AlumnoController">
+   <children>
+      <Label layoutX="106.0" layoutY="97.0" text="VENTANA ALUMNO:">
+         <font>
+            <Font name="System Bold Italic" size="32.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="chbModulos" layoutX="106.0" layoutY="241.0" prefWidth="150.0" />
+      <Label layoutX="106.0" layoutY="192.0" text="MODULOS">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvNotasModulos" layoutX="429.0" layoutY="241.0" prefHeight="378.0" prefWidth="502.0">
+        <columns>
+          <TableColumn fx:id="tbNombreModulo" prefWidth="135.0" text="NOMBRE_MODULO" />
+          <TableColumn fx:id="tbNota" prefWidth="79.0" text="NOTA" />
+            <TableColumn fx:id="tbDescripcion" prefWidth="287.0" text="DESCRIPCIÓN" />
+        </columns>
+      </TableView>
+      <Label layoutX="429.0" layoutY="192.0" text="NOTAS MODULOS">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnVolverLogin" layoutX="106.0" layoutY="590.0" mnemonicParsing="false" onAction="#onVolverALogin" text="VOLVER AL INICIO DE SESIÓN" />
+      <Label fx:id="lblNombreAlumno" layoutX="429.0" layoutY="97.0" text="Alumno">
+         <font>
+            <Font name="System Bold Italic" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
