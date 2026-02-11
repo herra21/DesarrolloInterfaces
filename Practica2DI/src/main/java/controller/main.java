@@ -1,7 +1,7 @@
 package controller;
 /* FXML es un archivo de marcado (similar a XML) que se usa en JavaFX para diseñar
 interfaces gráficas (ventanas, botones, paneles, imágenes, etc.) sin necesidad de
-escribir todo a mano en Java. Sirve para describir visualmente la interfaz.
+escribir all a mano en Java. Sirve para describir visualmente la interfaz.
 
 Es la forma moderna de separar:
    El diseño → va en el archivo .fxml
@@ -9,7 +9,7 @@ Es la forma moderna de separar:
 
 */
 
-//Clase padre de JavaFx. Obliga a sobreescribir el método start
+//Clase padre de JavaFx. Obliga a sobreescribir el method start
 import javafx.application.Application;
 //Se encargar de cargar los archivos FXML. Sirve la para leer el .fxml
 import javafx.fxml.FXMLLoader;

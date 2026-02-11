@@ -7,17 +7,18 @@ import java.util.Set;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
+
+@ToString(exclude = {"listaNotas", "modulosQueImparte"})
+@EqualsAndHashCode(exclude = {"listaNotas", "modulosQueImparte"})
 
 @Entity
 @Table(name = "usuarios")
 
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private int id;
 
     @Column(name = "nombre_usuario")
@@ -29,17 +30,15 @@ public class Usuario {
     @Column
     private String rol;
 
-    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private Set<Nota> listaNotas;
-
     public Usuario(String nombreUsuario, String contrasenia, String rol) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.rol = rol;
     }
 
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
+    private Set<Nota> listaNotas;
+
     @ManyToMany(mappedBy = "listaProfesores")
-    @ToString.Exclude
     private Set<Modulo> modulosQueImparte;
 }

@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.Nota;
 import model.Usuario;
@@ -22,7 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class AlumnoController {
+public class VentanaAlumnoController {
 
     private Usuario alumno;
 
@@ -41,6 +40,7 @@ public class AlumnoController {
     @FXML
     private TableColumn<Nota, String> tbDescripcion;
 
+    //Se carga automaticamente cuando se carga la vista xml, sirve para poblar la tabla de alumnos.
     @FXML
     private void initialize() {
         tbNombreModulo.setCellValueFactory(data ->
@@ -54,7 +54,7 @@ public class AlumnoController {
     }
 
 
-
+    // Método para volver al login
     @FXML
     private void onVolverALogin(){
         try{
@@ -72,6 +72,7 @@ public class AlumnoController {
         }
     }
 
+    //Setter manual para cargar los modulos cuando se entra en la ventana de alumnos.
     public void setAlumno(Usuario alumno) {
         this.alumno = alumno;
         cargarModulos();
@@ -82,6 +83,7 @@ public class AlumnoController {
 
         Set<String> nombresModulos = new HashSet<>();
 
+        // Llenamos la lista de modulos
         for (Nota n : alumno.getListaNotas()) {
             nombresModulos.add(n.getModulo().getNombre_modulo());
         }
@@ -91,15 +93,16 @@ public class AlumnoController {
         modulosList.add("Todos los módulos");
         modulosList.addAll(nombresModulos);
 
+        // Poblamos el choiceBox con los módulos.
         chbModulos.setItems(modulosList);
 
         // Seleccionamos "Todos los módulos" por defecto
         chbModulos.getSelectionModel().selectFirst();
 
-        // Llenamos la tabla inmediatamente
+        // Llenamos la tabla inmediatamente dependiendo del módulo en el nos encontremos
         mostrarNotasModulo(chbModulos.getSelectionModel().getSelectedItem());
 
-        // Listener para actualizar la tabla según la selección
+        // Listener para actualizar la tabla según el módulo seleccionado
         chbModulos.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 mostrarNotasModulo(newVal);
@@ -108,17 +111,17 @@ public class AlumnoController {
     }
 
     private void mostrarNotasModulo(String nombreModuloSeleccionado) {
-        ObservableList<Nota> notasFiltradas = FXCollections.observableArrayList();
+        ObservableList<Nota> notasModulo = FXCollections.observableArrayList();
 
         for (Nota n : alumno.getListaNotas()) {
             // Si se selecciona "Todos los módulos", añadimos todas las notas
             if (nombreModuloSeleccionado.equals("Todos los módulos") ||
                     n.getModulo().getNombre_modulo().equals(nombreModuloSeleccionado)) {
-                notasFiltradas.add(n);
+                notasModulo.add(n);
             }
         }
 
-        tvNotasModulos.setItems(notasFiltradas);
+        tvNotasModulos.setItems(notasModulo);
     }
 
 

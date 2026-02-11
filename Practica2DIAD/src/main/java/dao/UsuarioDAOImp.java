@@ -32,6 +32,7 @@ public class UsuarioDAOImp implements UsuarioDAO{
 
         session.close();
 
+        // Devolvemos alumno para pasarle al controlador.
         return usuario;
     }
 
@@ -49,6 +50,7 @@ public class UsuarioDAOImp implements UsuarioDAO{
 
         session.close();
 
+        // Devolvemos profesor para pasarle al controlador.
         return usuario;
 
     }

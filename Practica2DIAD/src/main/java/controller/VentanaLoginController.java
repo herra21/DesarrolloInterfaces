@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import model.Usuario;
 
 
-public class LoginController {
+public class VentanaLoginController {
 
     @FXML
     private TextField tfUsuario;
@@ -28,11 +28,15 @@ public class LoginController {
     @FXML
     private Button btnSalir;
 
+    //Método para limpiar datos introducidos
     @FXML
     private void onLimpiar(){
         tfUsuario.clear();
         tfContrasenia.clear();
+        cmbCargo.getSelectionModel().selectFirst();
     }
+
+    //Se carga automaticamente cuando se carga la vista xml, sirve para poblar el comoBox de cargo
     @FXML
     public void initialize() {
         cmbCargo.getItems().addAll("Selecciona una opción...","Alumn@", "Profesor/a");
@@ -58,19 +62,6 @@ public class LoginController {
         }
         //Entiende Strings
         Usuario usuario = null;
-
-        //NO FUNCIONA, NO ENTIENDO PORQUÉ
-        /*
-        if (usuario!=null) {
-            if (usuario.getRol().equals("Profesor/a")) {
-                abrirVentanaProfesores();
-            }else if (usuario.getRol().equals("Alumn@")) {
-                abrirVentanaAlumnos();
-            }
-        } else {
-            crearAlerta("Usuario desconocido", "No se encuentra usuario con esas credenciales", Alert.AlertType.ERROR);
-        }
-        */
 
         if (cargo.equals("Profesor/a")) {
             usuario = usuarioDAOImp.iniciarSesionProfesor(nombreUsuario, contrasenia, cargo);
@@ -114,7 +105,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ventanaAlumnos.fxml"));
             Parent root = loader.load();
 
-            AlumnoController alumnoController = loader.getController();
+            VentanaAlumnoController alumnoController = loader.getController();
             alumnoController.setAlumno(alumno);
 
             Stage stage = new Stage();
